@@ -20,7 +20,7 @@ export async function GET(req: Request): Promise<ImageResponse> {
           padding: 48,
           width: "100%",
           height: "100%",
-          backgroundImage: "url(http://localhost:3001/og-base.png)",
+          backgroundImage: "url(https://dqn-og.vercel.app/og-base.png)",
         }}
       >
         <div
