@@ -38,6 +38,7 @@ export async function GET(req: Request): Promise<ImageResponse> {
             fontFamily: "sans-serif",
             fontWeight: "bold",
             color: "#383635",
+            whiteSpace: "pre-wrap",
           }}
         >
           {text}
