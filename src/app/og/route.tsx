@@ -2,13 +2,6 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "experimental-edge";
 
-// const encodedPath = [
-//   46, 46, 47, 46, 46, 47, 46, 46, 47, 97, 115, 115, 101, 116, 115, 47, 102, 111,
-//   110, 116, 46, 119, 111, 102, 102,
-// ];
-
-// const path = encodedPath.map((n) => String.fromCharCode(n)).join("");
-// const font = fetch(new URL(path, import.meta.url)).then((res) =>
 const font = fetch("https://dqn-og.vercel.app/font.woff").then((res) =>
   res.arrayBuffer(),
 );
@@ -42,7 +35,6 @@ export async function GET(req: Request): Promise<ImageResponse> {
             alignItems: "center",
             justifyContent: "center",
             fontFamily: "NotoSansJP-Bold",
-            // fontFamily: "sans-serif",
             fontWeight: "bold",
             color: "#383635",
             whiteSpace: "pre-wrap",
