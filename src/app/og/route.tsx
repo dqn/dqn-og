@@ -2,9 +2,8 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "experimental-edge";
 
-// @ts-expect-error
 function fetchFont(): Promise<ArrayBuffer> {
-  const url = new URL("hogehoge", import.meta.url);
+  const url = eval('new URL("../../../assets/font.woff", import.meta.url);');
   return fetch(url).then((res) => res.arrayBuffer());
 }
 
@@ -12,7 +11,7 @@ export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text") || "";
 
-  const fontData = new Uint8Array([]);
+  const fontData = await fetchFont();
 
   return new ImageResponse(
     (
