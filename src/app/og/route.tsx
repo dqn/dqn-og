@@ -2,15 +2,12 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "experimental-edge";
 
-// const font = fetch(new URL("../../../assets/font.woff", import.meta.url)).then(
-//   (res) => res.arrayBuffer()
-// );
-
 export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text") || "";
 
-  // const fontData = await font;
+  const url = new URL("../../../assets/font.woff", import.meta.url);
+  const fontData = await fetch(url).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -34,8 +31,8 @@ export async function GET(req: Request): Promise<ImageResponse> {
             textAlign: "center",
             alignItems: "center",
             justifyContent: "center",
-            // fontFamily: "NotoSansJP-Bold",
-            fontFamily: "sans-serif",
+            fontFamily: "NotoSansJP-Bold",
+            // fontFamily: "sans-serif",
             fontWeight: "bold",
             color: "#383635",
             whiteSpace: "pre-wrap",
@@ -48,13 +45,13 @@ export async function GET(req: Request): Promise<ImageResponse> {
     {
       width: 1200,
       height: 630,
-      // fonts: [
-      //   {
-      //     name: "NotoSansJP-Bold",
-      //     data: fontData,
-      //     style: "normal",
-      //   },
-      // ],
+      fonts: [
+        {
+          name: "NotoSansJP-Bold",
+          data: fontData,
+          style: "normal",
+        },
+      ],
     }
   );
 }
