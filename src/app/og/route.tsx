@@ -7,17 +7,16 @@ const encodedPath = [
   110, 116, 46, 119, 111, 102, 102,
 ];
 
-function fetchFont(): Promise<ArrayBuffer> {
-  const path = encodedPath.map((n) => String.fromCharCode(n)).join("");
-  const url = new URL(path, import.meta.url);
-  return fetch(url).then((res) => res.arrayBuffer());
-}
+const path = encodedPath.map((n) => String.fromCharCode(n)).join("");
+const font = fetch(new URL(path, import.meta.url)).then((res) =>
+  res.arrayBuffer(),
+);
 
 export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text") || "";
 
-  const fontData = await fetchFont();
+  const fontData = await font;
 
   return new ImageResponse(
     (
