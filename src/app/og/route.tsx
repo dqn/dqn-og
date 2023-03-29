@@ -2,7 +2,10 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "experimental-edge";
 
-const url = new URL("../../../assets/font.woff", import.meta.url);
+function fetchFont(): Promise<ArrayBuffer> {
+  const url = new URL("../../../assets/font.woff", import.meta.url);
+  return fetch(url).then((res) => res.arrayBuffer());
+}
 
 export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
@@ -10,10 +13,7 @@ export async function GET(req: Request): Promise<ImageResponse> {
 
   console.log(process.env["SKIP"]);
 
-  const fontData =
-    process.env["SKIP"] === "true"
-      ? new Uint8Array([])
-      : await fetch(url).then((res) => res.arrayBuffer());
+  const fontData = new Uint8Array([]);
 
   return new ImageResponse(
     (
