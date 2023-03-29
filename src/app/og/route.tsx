@@ -2,6 +2,7 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "experimental-edge";
 
+// @ts-expect-error
 function fetchFont(): Promise<ArrayBuffer> {
   const url = new URL("../../../assets/font.woff", import.meta.url);
   return fetch(url).then((res) => res.arrayBuffer());
