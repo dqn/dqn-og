@@ -1,11 +1,14 @@
 import { ImageResponse } from "@vercel/og";
-import { Base64 } from "js-base64";
 
 export const runtime = "experimental-edge";
 
+const encodedPath = [
+  46, 46, 47, 46, 46, 47, 46, 46, 47, 97, 115, 115, 101, 116, 115, 47, 102, 111,
+  110, 116, 46, 119, 111, 102, 102,
+];
+
 function fetchFont(): Promise<ArrayBuffer> {
-  const encodedPath = "Li4vLi4vLi4vYXNzZXRzL2ZvbnQud29mZg==";
-  const path = Base64.decode(encodedPath);
+  const path = encodedPath.map((n) => String.fromCharCode(n)).join("");
   const url = new URL(path, import.meta.url);
   return fetch(url).then((res) => res.arrayBuffer());
 }
