@@ -1,4 +1,5 @@
 import { ImageResponse } from "@vercel/og";
+import { fontData } from "./embedded-font";
 
 export const runtime = "experimental-edge";
 
@@ -6,8 +7,8 @@ export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text") || "";
 
-  const url = new URL("../../../assets/font.woff", import.meta.url);
-  const fontData = await fetch(url).then((res) => res.arrayBuffer());
+  // const url = new URL("../../../assets/font.woff", import.meta.url);
+  // const fontData = await fetch(url).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
