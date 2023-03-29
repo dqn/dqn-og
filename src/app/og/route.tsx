@@ -4,15 +4,13 @@ export const runtime = "experimental-edge";
 
 // @ts-expect-error
 function fetchFont(): Promise<ArrayBuffer> {
-  const url = new URL("../../../assets/font.woff", import.meta.url);
+  const url = new URL("hogehoge", import.meta.url);
   return fetch(url).then((res) => res.arrayBuffer());
 }
 
 export async function GET(req: Request): Promise<ImageResponse> {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text") || "";
-
-  console.log(process.env["SKIP"]);
 
   const fontData = new Uint8Array([]);
 
