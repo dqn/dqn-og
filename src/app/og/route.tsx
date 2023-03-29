@@ -1,9 +1,12 @@
 import { ImageResponse } from "@vercel/og";
+import { Base64 } from "js-base64";
 
 export const runtime = "experimental-edge";
 
 function fetchFont(): Promise<ArrayBuffer> {
-  const url = eval('new URL("../../../assets/font.woff", import.meta.url);');
+  const encodedPath = "Li4vLi4vLi4vYXNzZXRzL2ZvbnQud29mZg==";
+  const path = Base64.decode(encodedPath);
+  const url = new URL(path, import.meta.url);
   return fetch(url).then((res) => res.arrayBuffer());
 }
 
