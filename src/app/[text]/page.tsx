@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 type Props = {
   params: { text: string };
@@ -9,6 +9,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: "dqn-og",
+    metadataBase: new URL("https://dqn-og.vercel.app/"),
     openGraph: {
       images: [`/og?text=${text}`],
     },
