@@ -15,31 +15,21 @@ export async function GET(req: Request) {
       <div
         style={{
           display: "flex",
-          padding: 48,
+          padding: 48 + 32,
+          fontSize: 64,
+          fontFamily: "NotoSansJP-Bold",
+          fontWeight: "bold",
+          color: "#383635",
           width: "100%",
           height: "100%",
+          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "pre-wrap",
           backgroundImage: "url(https://dqn-og.vercel.app/og-base.png)",
         }}
       >
-        <div
-          style={{
-            fontSize: 64,
-            padding: 32,
-            borderRadius: 16,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            textAlign: "center",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "NotoSansJP-Bold",
-            fontWeight: "bold",
-            color: "#383635",
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          {text}
-        </div>
+        {text}
       </div>
     ),
     {
