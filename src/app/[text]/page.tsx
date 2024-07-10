@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Main } from "./Main";
 
 type Props = {
   params: { text: string };
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page: React.FC = () => {
-  return <div className="text-red-500">Hello</div>;
+  return <Main />;
 };
 
 export default Page;
