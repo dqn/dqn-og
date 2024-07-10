@@ -1,14 +1,12 @@
 import { ImageResponse } from "@vercel/og";
 
-export const runtime = "experimental-edge";
-
 const font = fetch("https://dqn-og.vercel.app/font.woff").then((res) =>
   res.arrayBuffer(),
 );
 
-export async function GET(req: Request): Promise<ImageResponse> {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const text = searchParams.get("text") || "";
+  const text = searchParams.get("text") ?? "";
 
   const fontData = await font;
 
